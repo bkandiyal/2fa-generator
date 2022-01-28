@@ -79,7 +79,7 @@ class OTPForm extends React.Component {
                 
                 <div id="info">
                     <h4 className="text-2xl font-bold mt-2 mb-5">About</h4>
-                    <p>This small web-app generates Two-Factor QR codes that can be used with applications like Google Authenticator</p>
+                    <p>This small web-app (get code from <a className="text-blue-500" href="https://github.com/bkandiyal/2fa-generator">GitHub</a>) generates Two-Factor QR codes that can be used with applications like Google Authenticator</p>
                     <p>The URI scheme used in the QR code is documented <a className="text-blue-500" href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format">here</a></p>
                     <p className="mt-2">The following two types of two-factor codes can be generated:</p>
                     <ul className="list-disc ml-5 mt-2">
