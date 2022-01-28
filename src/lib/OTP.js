@@ -64,6 +64,8 @@ class OTP {
         return [this.generateHOTP(secret, c, digits, algorithm), r]
     }
 
+    // Following functions have been taken from https://github.com/bellstrand/totp-generator
+
     static _hex2dec(s) {
         return parseInt(s, 16)
     }
