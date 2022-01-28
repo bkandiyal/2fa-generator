@@ -74,6 +74,27 @@ class OTPForm extends React.Component {
                     <label className="block text-gray-700 text-sm font-bold mb-2">URI:</label>
                     <input type="text" name="uri" value={this._formUri()} className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" readOnly/>
                 </div>
+
+                <hr className="mt-5 mb-5"/>
+                
+                <div id="info">
+                    <h4 className="text-2xl font-bold mt-2 mb-5">About</h4>
+                    <p>This small web-app generates Two-Factor QR codes that can be used with applications like Google Authenticator</p>
+                    <p>The URI scheme used in the QR code is documented <a className="text-blue-500" href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format">here</a></p>
+                    <p className="mt-2">The following two types of two-factor codes can be generated:</p>
+                    <ul className="list-disc ml-5 mt-2">
+                        <li className="list-item">Time-based One-Time Password (TOTP) (<a className="text-blue-500" href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a>)</li>
+                        <li className="list-item">Hmac-based One-Time Password (HOTP) (<a className="text-blue-500" href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226</a>)</li>
+                    </ul>
+                    <h4 class="text-2xl font-bold mt-5 mb-5">Technologies Used</h4>
+                    <p>The following technologies / packages were used for building this app:</p>
+                    <ul className="list-disc ml-5 mt-2">
+                        <li>ReactJS - For putting it all together</li>
+                        <li>Tailwind CSS - For CSS</li>
+                        <li>JsSHA - To generate HMAC</li>
+                        <li>hi-base32 - For base32 encoding</li>
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -140,7 +161,7 @@ class OTPForm extends React.Component {
     _secret() {
         return (
             <div className="mb-4">
-                <label className="w-1/3 block text-gray-700 text-sm font-bold mb-2">Secret</label>
+                <label className="w-1/3 block text-gray-700 text-sm font-bold mb-2">Secret:</label>
                 <div className="flex">
                     <input required value={this.state.secret} onChange={this._handleChange} name="secret" type="text" placeholder="Secret" className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                     <button className="ml-4 w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.setState({...this.state, secret: OTP.generateRandomSecret(32)})}>Generate</button>
@@ -155,7 +176,7 @@ class OTPForm extends React.Component {
 
         return (
             <div className="w-1/3 mr-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Digits</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Digits:</label>
                 <select name="digits" value={this.state.digits} onChange={this._handleChange} className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     {digits}
                 </select>
@@ -166,7 +187,7 @@ class OTPForm extends React.Component {
     _period() {
         return (
             <div className="w-1/3 mr-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Period</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Period:</label>
                 <input name="period" type="number" value={this.state.period} onChange={this._handleChange} placeholder="Period" className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
         );
@@ -175,7 +196,7 @@ class OTPForm extends React.Component {
     _counter() {
         return (
             <div className="w-1/3 mr-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Counter</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Counter:</label>
                 <input name="counter" type="number" value={this.state.counter} onChange={this._handleChange} placeholder="Counter" className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
         );
@@ -187,7 +208,7 @@ class OTPForm extends React.Component {
 
         return (
             <div className="w-1/3">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Algorithm</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Algorithm:</label>
                 <select name="algorithm" value={this.state.algorithm} onChange={this._handleChange} className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     {algorithms}
                 </select>
