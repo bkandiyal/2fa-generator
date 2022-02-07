@@ -49,7 +49,7 @@ class OTPForm extends React.Component {
 
     render() {
         return (
-            <div className="w-6/12 mx-auto bg-white drop-shadow rounded px-8 pt-6 pb-8 mb-4 mt-4">
+            <div className="md:w-6/12 mx-auto bg-white drop-shadow rounded px-8 pt-6 pb-8 mb-4 mt-4">
                 <div>
                     <h1 className="font-bold text-4xl text-center">Two-Factor QR Code Generator</h1>
                     <h4 className="text-sm text-center">Developed By: <a className="text-blue-500 hover:underline" href="https://kbhaskar.in/">Bhaskar Kandiyal</a></h4>
