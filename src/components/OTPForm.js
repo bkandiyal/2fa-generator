@@ -86,7 +86,7 @@ class OTPForm extends React.Component {
                         <li className="list-item">Time-based One-Time Password (TOTP) (<a className="text-blue-500" href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a>)</li>
                         <li className="list-item">Hmac-based One-Time Password (HOTP) (<a className="text-blue-500" href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226</a>)</li>
                     </ul>
-                    <h4 class="text-2xl font-bold mt-5 mb-5">Technologies Used</h4>
+                    <h4 className="text-2xl font-bold mt-5 mb-5">Technologies Used</h4>
                     <p>The following technologies / packages were used for building this app:</p>
                     <ul className="list-disc ml-5 mt-2">
                         <li>ReactJS - For putting it all together</li>
@@ -113,6 +113,15 @@ class OTPForm extends React.Component {
         if (this.state.secret.length <= 0) return false;
         else if (this.state.label.length <= 0) return false;
         else return true;
+    }
+
+    _generateSecret() {
+        var s = OTP.generateRandomSecret(32);
+        var input = document.querySelector('input[name=secret]');
+        Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(input, s);
+        this.setState({ ...this.state, secret:  s});
+        var event = new Event('change', { bubbles: true });
+        input.dispatchEvent(event);
     }
 
     _type() {
@@ -163,8 +172,8 @@ class OTPForm extends React.Component {
             <div className="mb-4">
                 <label className="w-1/3 block text-gray-700 text-sm font-bold mb-2">Secret:</label>
                 <div className="flex">
-                    <input required value={this.state.secret} onChange={this._handleChange} name="secret" type="text" placeholder="Secret" className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                    <button className="ml-4 w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.setState({...this.state, secret: OTP.generateRandomSecret(32)})}>Generate</button>
+                    <input required ref={(input) => this.inputSecret = input} value={this.state.secret} onChange={this._handleChange} name="secret" type="text" placeholder="Secret" className="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <button className="ml-4 w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={this._generateSecret.bind(this)}>Generate</button>
                 </div>
             </div>
         );

@@ -84,7 +84,6 @@ class OTPView extends React.Component {
     _updateOTP() {
         switch (this.props.params.type) {
             case 'totp':
-                console.log(`_updateOTP got - ${this.props.params.secret}`);
                 [this.state.otp, this.state.remaining] = OTP.generateTOTP(this.props.params.secret, null, this.props.params.period, this.props.params.digits, this.props.params.algorithm);
                 // console.log(`Got OTP ${this.state.otp}`);
                 this.setState(this.state);
